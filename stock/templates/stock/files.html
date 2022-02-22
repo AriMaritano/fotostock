@@ -1,0 +1,9 @@
+{% extends "stock/base.html" %} {% block title %}{% endblock %} {% block body %}
+<div align="center" style="line-height: 75%">
+    <h3 align="center">Archivos</h3>
+    {% for file in files %}
+    <p>{{file.filename}}</p>
+    {% endfor %}
+
+</div>
+{% endblock %}

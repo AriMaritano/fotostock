@@ -1,0 +1,44 @@
+{% extends 'stock/base.html' %} {% block title %}Fotostock{% endblock %} {% block body %}
+<div style="display: inline-block; width: 45%; margin-left: 4%;">{% if last_file %}
+    <h4 align="center">Usar último archivo</h4><br>
+    <div align="center">
+        <form action="/fotostock" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">{{last_file.filename}}</label><br>
+
+                <input class="form-control" type="file" id="file3" name="file3" style="width: 80%;" required>
+            </div>
+            <!-- <input type="file" class="custom-file-input" id="file1" name="file1" required>
+            <input type="file" class="custom-file-input" id="file2" name="file2" required> -->
+            <button class="btn btn-primary" type="submit" value="Upload">Fotostockear</button>
+        </form>
+    </div><br><br> {% endif %} </div>
+<div style="display: inline-block; width: 45%">
+    <h4 align="center">Subir nuevos archivos</h4><br>
+    <div align="center">
+        <form action="/fotostock" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+
+                <input class="form-control" type="file" id="file1" name="file1" style="width: 80%;" required><br>
+
+                <input class="form-control" type="file" id="file2" name="file2" style="width: 80%;" required>
+            </div>
+            <!-- <input type="file" class="custom-file-input" id="file1" name="file1" required>
+            <input type="file" class="custom-file-input" id="file2" name="file2" required> -->
+            <button class="btn btn-primary" type="submit" value="Upload">Fotostockear</button>
+        </form>
+    </div>
+    <br>
+</div>
+<div>
+    {% if results %}
+    <h1 align="center">Resultados</h1><br>
+    <div style="line-height:25%; font-weight:bold">
+        {% for result in results %}
+        <p align="center">- {{result}}</p> <br> {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "stock/base.html"%} {% block style %}
+<style>
+    th {
+        padding: 5px;
+    }
+</style>
+{% endblock %} {% block body %}
+<div class="container-fluid" align="center">
+    <h3>Consultar stock</h3><br>
+
+    <form class="form-inline" action="#" method="post">
+        <div class="form-group mb-2" style="width: 20%">
+            {% csrf_token %}
+            <input class="form-control" type="text" placeholder="ingresar búsqueda…" id="consulta" name="consulta"><br>
+            <button class="btn btn-primary" type="submit">Consultar</button>
+        </div>
+    </form>
+</div> {% if sin_resultados %}
+<h4 align="center">No hay resultados para "{{consulta}}"</h4>
+<h5 align="center">archivo: {{file}}, subido el {{date_uploaded}}</h5>
+{% endif %} {% if resultados_busqueda %}
+<h4 align="center">Resultados para "{{consulta}}"</h4>
+<h5 align="center">Archivo: {{file}}, subido el {{date_uploaded}}</h5>
+<div style="line-height: 0.9" align="center">
+    <table class="table" cellspacing="20"  style="width:65%">
+        <tr>
+            <th>ARTÍCULO</th>
+            <th>PRECIO</th>
+            <th>STOCK</th>
+        </tr>
+
+        {% for x, y, z in resultados_busqueda %}
+        <tr>
+            <th>{{x}}</th>
+            <th>{{y}}</th>
+            <th>{{z}}</th>
+        </tr>
+
+
+        {% endfor %}
+    </table>
+</div>
+{% endif %} {% endblock %}

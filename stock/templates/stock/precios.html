@@ -1,0 +1,15 @@
+{% extends "base.html" %} {%block content %} {% if resultados %}
+
+<form method="POST" action="/ver_precios">
+    <div class="form-group" align="center">
+        <input type="text" name="data" class="form-control" placeholder="Ingresar búsqueda"><br>
+    </div>
+    <div class="form-group" align="center">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+</form>
+
+{% else %}
+<br>
+<h3 align="center">No hay archivo para consultar</h3>
+{% endif %} {% endblock %}
